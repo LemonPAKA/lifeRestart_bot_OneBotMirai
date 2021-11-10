@@ -6,7 +6,10 @@ from .Life import Life
 from .PicClass import *
 import traceback
 import random
-
+import base64
+import asyncio
+from io import BytesIO
+from PIL import Image, ImageDraw, ImageFont
 sv = Service("人生重来模拟器")
 
 def genp(prop):
@@ -64,20 +67,25 @@ async def remake(bot,ev:CQEvent):
     person = person + "智力值:" + str(life.property.INT)+"  "
     person = person + "体质值:" + str(life.property.STR)+"  "
     person = person + "财富值:" + str(life.property.MNY)+"  "
-    pic_list.append("这是"+name+"本次轮回的基础属性和天赋:")
-    pic_list.append(ImgText(person).draw_text())
-
+    #pic_list.append("这是"+name+"本次轮回的基础属性和天赋:")
+    msg = "这是"+name+"本次轮回的基础属性和天赋:"+ImgText(person).draw_text()
+    #pic_list.append(ImgText(person).draw_text())
     await bot.send(ev, "你的命运正在重启....",at_sender=True)
-
+    await bot.send(ev, msg,at_sender=True)
+    
     res = life.run() #命运之轮开始转动
     mes = '\n'.join('\n'.join(x) for x in res)
-    pic_list.append("这是"+name+"本次轮回的生平:")
-    pic_list.append(ImgText(mes).draw_text())
-
+    #pic_list.append("这是"+name+"本次轮回的生平:")
+    msg="这是"+name+"本次轮回的生平:"+ImgText(mes).draw_text()
+    #pic_list.append(ImgText(mes).draw_text())
+    await bot.send(ev, msg ,at_sender=True)
+    
     sum = life.property.gensummary() #你的命运之轮到头了
     pic_list.append("这是" + name + "本次轮回的评价:")
-    pic_list.append(ImgText(sum).draw_text())
-
+    msg="这是" + name + "本次轮回的评价:"+ImgText(sum).draw_text()
+    #pic_list.append(ImgText(sum).draw_text())
+    await bot.send(ev,msg ,at_sender=True)
+'''
     for img in pic_list:
         data = {
             "type": "node",
@@ -88,5 +96,5 @@ async def remake(bot,ev:CQEvent):
             }
         }
         mes_list.append(data)
-
     await bot.send_group_forward_msg(group_id=ev['group_id'], messages=mes_list)
+'''
