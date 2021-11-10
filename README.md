@@ -2,7 +2,7 @@
 ### [原作地址](https://github.com/VickScarlet/lifeRestart)
 ### [python版原地址](https://github.com/cc004/lifeRestart-py)
 ### [本项目地址](https://github.com/Daishengsheng/lifeRestart_bot)
-
+### [警告](仅在OneBot Mirai 0.3.5上测试通过)
 ## 安装方法
 这是一个[HoshinoBot](https://github.com/Ice-Cirno/HoshinoBot)的人生重来模拟器插件
 
