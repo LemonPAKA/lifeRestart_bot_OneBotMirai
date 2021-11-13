@@ -6,10 +6,7 @@ from .Life import Life
 from .PicClass import *
 import traceback
 import random
-import base64
-import asyncio
-from io import BytesIO
-from PIL import Image, ImageDraw, ImageFont
+
 sv = Service("人生重来模拟器")
 
 def genp(prop):
